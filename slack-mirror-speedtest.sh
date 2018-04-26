@@ -54,7 +54,7 @@ EOF
 
 # Use any adequetly sized file to test the speed. This is ~7MB.
 # The location should be based on the relative location within
-# the slackware64-current tree. I originally tried a smaller 
+# the slackware64-current tree. I originally tried a smaller
 # file (FILELIST.TXT ~1MB), but I was seeing slower speed results
 # since it didn't have time to fully max my connection. Depending
 # on your internet speed, you may want to try different sized files.
@@ -72,9 +72,9 @@ GREEN="\e[32m"
 NC="\e[0m"  #No color
 
 for MIRROR in $MIRRORS ; do
-	
+
   echo -n "Testing ${MIRROR} "
-	
+
   # Combine the mirror with the file to create the URL
   URL="${MIRROR}${FILE}"
 
@@ -84,11 +84,11 @@ for MIRROR in $MIRRORS ; do
   # If the speed is below ~10kb/s mark it as a failure
   if (( $(echo "$SPEED < 10000.000" | bc -l) )) ; then
     echo -e "${RED}Fail${NC}";
-  else 
+  else
     # Use numfmt to convert to a pretty speed
-    SPEED="$(numfmt --to=iec-i --suffix=B --padding=7 $SPEED)ps"
+    # SPEED="$(numfmt --to=iec-i --suffix=B --padding=7 $SPEED)ps"
     echo -e "${GREEN}$SPEED${NC}"
-    RESULTS="${RESULTS}\t${SPEED}\t${MIRROR}\n";
+    # RESULTS="${RESULTS}\t${SPEED}\t${MIRROR}\n";
   fi
 
 done;
